@@ -2,22 +2,29 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-fetch-data',
-  templateUrl: './fetch-data.component.html'
+    selector: 'app-fetch-data',
+    templateUrl: './fetch-data.component.html'
 })
 export class FetchDataComponent {
-  public cars: CarTable[];
+    public cars: CarTable[];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<CarTable[]>(baseUrl + 'api/car').subscribe(result => {
-      this.cars = result;
-    }, error => console.error(error));
-  }
+    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+        http.get<CarTable[]>(baseUrl + 'api/cars').subscribe(result => {
+            this.cars = result;
+        }, error => console.error(error));
+        http.get<CarTable[]>(baseUrl + 'api/cars/horse_power').subscribe(result => {
+            
+        }, error => console.error(error));
+    }
 }
 
 interface CarTable {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+    manufacturer: string;
+    modell: string;
+    horse_power: number;
+    design: string;
+    manufactured: Date;
+    engine_cc: number;
+    established_at: Date;
+    place: string;
 }

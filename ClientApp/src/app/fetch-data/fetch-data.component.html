@@ -1,10 +1,8 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<h1 id="tableLabel">Car Table</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p *ngIf="!cars"><em>Loading...</em></p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
-
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="cars">
   <thead>
     <tr>
       <th>Gyártó</th>
@@ -12,13 +10,22 @@
       <th>Lóerő</th>
       <th>Kivitel</th>
       <th>Gyártás</th>
+      <th><button class="btn btn-success">Új</button></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
+    <tr *ngFor="let car of cars">
+      <td>{{ car.manufacturer }}</td>
+      <td>{{ car.modell }}</td>
+      <td>{{ car.horse_power }}</td>
+      <td>{{ car.design }}</td>
+      <td>{{ car.manufactured }}</td>
+      <td>
+        <div>
+          <button class="btn btn-primary">Módosítás</button>
+          <button class="btn btn-danger">Törlés</button>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>
